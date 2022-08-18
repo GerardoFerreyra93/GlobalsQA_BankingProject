@@ -22,7 +22,20 @@ namespace BankingProject.Validations
         private IWebElement SelectCurrency => browser.getDriver.FindElement(By.XPath("//option[@value='Pound']")); 
         private IWebElement ProcessBtn => browser.getDriver.FindElement(By.XPath("//button[@type='submit']")); 
         private IWebElement ShowCustomersBtn => browser.getDriver.FindElement(By.XPath("//button[@ng-click='showCust()']")); 
-        private IWebElement ShowUsr => browser.getDriver.FindElement(By.XPath("//td[contains(text(), 'Gerardo')]"));
+        private IWebElement ShowUsr => browser.getDriver.FindElement(By.XPath("//td[contains(text(), 'Gerardo')]"));       
+        private IWebElement CustomereLoginButton => browser.getDriver.FindElement(By.XPath("//button[@ng-click='customer()']")); 
+        private IWebElement SelectUsr => browser.getDriver.FindElement(By.XPath("//option[contains(text(),'Neville Longbottom')]")); 
+        private IWebElement LoginBtn => browser.getDriver.FindElement(By.XPath("//button[@type= 'submit']")); 
+        private IWebElement AccountName => browser.getDriver.FindElement(By.XPath("//span[contains(text(), 'Neville Longbottom')]")); 
+        private IWebElement AccountNumber => browser.getDriver.FindElement(By.XPath("//strong[contains(text(), '1013')]")); 
+        private IWebElement DepositButton => browser.getDriver.FindElement(By.XPath("//button[@ng-click='deposit()']")); 
+        private IWebElement AmountId => browser.getDriver.FindElement(By.XPath("//input[@placeholder='amount']"));
+        private IWebElement DepositBtn => browser.getDriver.FindElement(By.XPath("//button[@type= 'submit']")); 
+        private IWebElement DepositSuccesful => browser.getDriver.FindElement(By.XPath("//span[@ng-show='message']")); 
+        private IWebElement TransactionsButton => browser.getDriver.FindElement(By.XPath("//button[@ng-click='transactions()']"));
+        private IWebElement AmountValidate => browser.getDriver.FindElement(By.XPath(" //td[contains(text(), '500')]"));
+
+
 
         internal void InitBrowser()
         {
@@ -83,7 +96,39 @@ namespace BankingProject.Validations
 
         internal void Validation_TC2()
         {
-           
+            CustomereLoginButton.Click();
+            System.Threading.Thread.Sleep(5000);
+
+            SelectUsr.Click();
+            System.Threading.Thread.Sleep(5000);
+
+            LoginBtn.Click();
+            System.Threading.Thread.Sleep(5000);
+
+            Assert.IsTrue(AccountName.Displayed);
+            System.Threading.Thread.Sleep(5000);
+
+            Assert.IsTrue(AccountNumber.Displayed);
+            System.Threading.Thread.Sleep(5000);
+
+            DepositButton.Click();
+            System.Threading.Thread.Sleep(5000);
+
+            AmountId.SendKeys("500");
+            System.Threading.Thread.Sleep(5000);
+
+            DepositBtn.Click();
+            System.Threading.Thread.Sleep(5000);
+
+            Assert.IsTrue(DepositSuccesful.Displayed);
+            System.Threading.Thread.Sleep(5000);
+
+            TransactionsButton.Click();
+            System.Threading.Thread.Sleep(5000);
+
+            Assert.IsTrue(AmountValidate.Displayed);
+            System.Threading.Thread.Sleep(5000);
+            
         }
 
         internal void CloseBrowser()

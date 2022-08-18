@@ -22,7 +22,7 @@ namespace BankingProject
         [Test]
         public void Test_Case2()
         {
-            
+            Validation_TC2();
         }
 
         [TearDown]
